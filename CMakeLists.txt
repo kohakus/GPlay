@@ -84,7 +84,8 @@ include_directories(src)
 add_subdirectory(external/stb_image)
 add_subdirectory(external/glad)
 add_subdirectory(external/glfw-3.4)
-set(GPLAY_DEPENDENCIES glad glfw stb_image glm::glm)
+add_subdirectory(external/imgui-cpp)
+set(GPLAY_DEPENDENCIES glad glfw stb_image glm::glm imgui imgui_impl_glfw imgui_impl_opengl3)
 
 # Testing
 if(GPLAY_BUILD_TESTS)

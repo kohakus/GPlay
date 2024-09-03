@@ -22,6 +22,13 @@ target_link_libraries(glm_matrix PRIVATE
     glm::glm
 )
 
+add_executable(glm_ppm_demo
+    glm_common/ppm.cpp
+)
+target_link_libraries(glm_ppm_demo PRIVATE
+    glm::glm
+)
+
 add_executable(imgui_example_glfw_opengl3
     imgui_glfw_opengl3/main.cpp
 )

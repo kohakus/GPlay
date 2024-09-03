@@ -87,6 +87,7 @@ add_subdirectory(external/glfw-3.4)
 add_subdirectory(external/imgui-cpp)
 add_subdirectory(external/yaml-cpp)
 add_subdirectory(external/tinyobjloader)
+add_subdirectory(external/spdlog-1.14.1)
 set(GPLAY_DEPENDENCIES
     glad
     glfw
@@ -95,9 +96,14 @@ set(GPLAY_DEPENDENCIES
     imgui imgui_impl_glfw imgui_impl_opengl3
     tinyobjloader
     yaml-cpp::yaml-cpp
+    spdlog
 )
 
 # Testing
 if(GPLAY_BUILD_TESTS)
 	add_subdirectory(test)
 endif()
+
+# src projects
+add_subdirectory(src/owls)
+add_subdirectory(src/parrots)

@@ -15,11 +15,11 @@ if(COMPILER_SUPPORTS_CXX14)
 elseif(COMPILER_SUPPORTS_CXX11)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 else()
-    message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+    message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a newer version C++ compiler.")
 endif()
 
 # add some other compile flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -Wshadow -Wpointer-arith")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -Wshadow -Wpointer-arith")
 set(CMAKE_CXX_FLAGS_DEBUG "-O2")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
@@ -85,7 +85,17 @@ add_subdirectory(external/stb_image)
 add_subdirectory(external/glad)
 add_subdirectory(external/glfw-3.4)
 add_subdirectory(external/imgui-cpp)
-set(GPLAY_DEPENDENCIES glad glfw stb_image glm::glm imgui imgui_impl_glfw imgui_impl_opengl3)
+add_subdirectory(external/yaml-cpp)
+add_subdirectory(external/tinyobjloader)
+set(GPLAY_DEPENDENCIES
+    glad
+    glfw
+    stb_image
+    glm::glm
+    imgui imgui_impl_glfw imgui_impl_opengl3
+    tinyobjloader
+    yaml-cpp::yaml-cpp
+)
 
 # Testing
 if(GPLAY_BUILD_TESTS)

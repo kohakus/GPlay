@@ -4,6 +4,11 @@ project(GPlay LANGUAGES CXX)
 
 # options
 option(GPLAY_BUILD_TESTS "Build test examples" ON)
+option(GPLAY_ENABLE_LOGGING "Enable logging" ON)
+
+if (GPLAY_ENABLE_LOGGING)
+    add_compile_definitions(GPLAY_ENABLE_LOGGING)
+endif()
 
 # C++ standard
 include(CheckCXXCompilerFlag)

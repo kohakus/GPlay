@@ -80,6 +80,17 @@ void AxisAlignedBoundingBox::PadToMinimums(double delta) {
     }
 }
 
+const AxisAlignedBoundingBox AxisAlignedBoundingBox::empty    = AxisAlignedBoundingBox(Interval::empty,    Interval::empty,    Interval::empty);
+const AxisAlignedBoundingBox AxisAlignedBoundingBox::universe = AxisAlignedBoundingBox(Interval::universe, Interval::universe, Interval::universe);
+
+AxisAlignedBoundingBox operator+(const AxisAlignedBoundingBox& bbox, const Vec3& offset) {
+    return AxisAlignedBoundingBox(bbox.x+offset.X(), bbox.y+offset.Y(), bbox.z+offset.Z());
+}
+
+AxisAlignedBoundingBox operator+(const Vec3& offset, const AxisAlignedBoundingBox& bbox) {
+    return bbox + offset;
+}
+
 } // namespace rabbit
 
 } // namespace gplay

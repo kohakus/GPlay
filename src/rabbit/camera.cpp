@@ -43,26 +43,50 @@ void Camera::Initialize() {
     _viewport_upper_left = _center - viewport_u/2 - viewport_v/2 - (focus_dist * _w);
     _location_origin_pixel_grid = _viewport_upper_left + 0.5*_pixel_delta_u + 0.5*_pixel_delta_v;
 
-    double defocus_disk_radius = focus_dist * std::tan(DegreesToRadians(defocus_angle)/2);
+    double defocus_disk_radius = focus_dist * std::tan(DegreesToRadians(defocus_angle) / 2);
     _defocus_disk_u = defocus_disk_radius * _u;
     _defocus_disk_v = defocus_disk_radius * _v;
 }
 
-void Camera::SetBackgroundColor(Color color) {
-    bgcolor = color;
-}
-
-Ray Camera::GetRay(int i, int j) {
+Ray Camera::GetRay(int i, int j) const {
     Point3 offset_in_pixel = RandomPointInUnitSquare();
     Point3 target = _location_origin_pixel_grid +
                     _pixel_delta_u * (static_cast<double>(i)+offset_in_pixel.X()) +
-                    _pixel_delta_v * (static_cast<double>(i)+offset_in_pixel.Y());
+                    _pixel_delta_v * (static_cast<double>(j)+offset_in_pixel.Y());
     Point3 origin = _center;
     if (defocus_angle > 0) {
         Point3 point_in_disk = RandomPointInUnitDisk();
         origin += point_in_disk.X()*_defocus_disk_u + point_in_disk.Y()*_defocus_disk_v;
     }
     return Ray(origin, target-origin, RandomDouble());
+}
+
+void Camera::SetBackgroundColor(Color color) {
+    bgcolor = color;
+}
+
+int Camera::ImageWidth() const {
+    return image_width;
+}
+
+int Camera::ImageHeight() const {
+    return _image_height;
+}
+
+int Camera::SamplesPerPixel() const {
+    return samples_per_pixel;
+}
+
+double Camera::PixelSamplesScaleFactor() const {
+    return _pixel_samples_scale_factor;
+}
+
+int Camera::MaxBounce() const {
+    return max_bounce;
+}
+
+const Color& Camera::BackgroundColor() const {
+    return bgcolor;
 }
 
 } // namespace rabbit

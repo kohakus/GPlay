@@ -55,6 +55,7 @@ class Hittable {
 public:
     virtual ~Hittable() = default;
 
+    // Hit ray-object intersection
     virtual bool Hit(const Ray& r, Interval ray_time_interval, HitRecord& record) const = 0;
 
     virtual AxisAlignedBoundingBox GetBoundingBox() const = 0;

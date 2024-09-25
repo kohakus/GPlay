@@ -73,16 +73,9 @@ private:
     double _max;
 };
 
-const Interval Interval::empty    = Interval(+kInfinity, -kInfinity);
-const Interval Interval::universe = Interval(-kInfinity, +kInfinity);
+Interval operator+(const Interval& ival, double displacement);
 
-Interval operator+(const Interval& ival, double displacement) {
-    return Interval(ival.GetMin()+displacement, ival.GetMax()+displacement);
-}
-
-Interval operator+(double displacement, const Interval& ival) {
-    return ival + displacement;
-}
+Interval operator+(double displacement, const Interval& ival);
 
 inline float FFMin(float a, float b) {
     return a < b ? a : b;
@@ -124,6 +117,9 @@ inline Vec3 RandomVec3(double min, double max) {
     return Vec3(RandomDouble(min, max), RandomDouble(min, max), RandomDouble(min, max));
 }
 
+// RandomPermuteArray ...
+void RandomPermuteArray(int arr[], int n);
+
 // RandomPointInUnitDisk returns a random point in the unit disk centered at the origin
 Point3 RandomPointInUnitDisk();
 
@@ -152,7 +148,7 @@ double SchlickApprox(double cosine, double refractive_index);
 double TrilinearInterp(double c[2][2][2], double u, double v, double w);
 
 // PerlinInterp trilinear perlin interpolation
-double PerlinInterp(Vec3 c[2][2][2], double u, double v, double w);
+double PerlinInterp(const Vec3 c[2][2][2], double u, double v, double w);
 
 } // namespace rabbit
 

@@ -109,6 +109,5 @@ if(GPLAY_BUILD_TESTS)
 	add_subdirectory(test)
 endif()
 
-# src projects
-add_subdirectory(src/owls)
-add_subdirectory(src/parrots)
+# Source projects
+add_subdirectory(src)

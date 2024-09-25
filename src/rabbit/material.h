@@ -65,7 +65,7 @@ private:
     double _refractive_index;
 };
 
-// DiffuseLight a light emitting material
+// DiffuseLight light emitting material
 class DiffuseLight : public Material {
 public:
     DiffuseLight(const Color& emit);

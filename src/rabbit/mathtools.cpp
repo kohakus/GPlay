@@ -14,6 +14,24 @@ Interval::Interval(const Interval& a, const Interval& b) {
     _max = a._max >= b._max ? a._max : b._max;
 }
 
+const Interval Interval::empty    = Interval(+kInfinity, -kInfinity);
+const Interval Interval::universe = Interval(-kInfinity, +kInfinity);
+
+Interval operator+(const Interval& ival, double displacement) {
+    return Interval(ival.GetMin()+displacement, ival.GetMax()+displacement);
+}
+
+Interval operator+(double displacement, const Interval& ival) {
+    return ival + displacement;
+}
+
+void RandomPermuteArray(int arr[], int n) {
+    for (int i = n-1; i > 0; i--) {
+        int target = RandomInt(0, i);
+        std::swap(arr[i], arr[target]);
+    }
+}
+
 Point3 RandomPointInUnitDisk() {
     // rejection sampling
     while (true) {
@@ -85,7 +103,7 @@ double SchlickApprox(double cosine, double refractive_index) {
 }
 
 double TrilinearInterp(double c[2][2][2], double u, double v, double w) {
-    double accum = 0;
+    double accum = 0.0;
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
             for (int k = 0; k < 2; k++) {
@@ -98,8 +116,8 @@ double TrilinearInterp(double c[2][2][2], double u, double v, double w) {
     return accum;
 }
 
-double PerlinInterp(Vec3 c[2][2][2], double u, double v, double w) {
-    double accum = 0;
+double PerlinInterp(const Vec3 c[2][2][2], double u, double v, double w) {
+    double accum = 0.0;
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
             for (int k = 0; k < 2; k++) {

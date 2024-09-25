@@ -23,7 +23,7 @@ public:
     bool Hit(const Ray& r, Interval ray_time_interval, HitRecord& record) const override;
 
     // GetBoundingBox ...
-    AxisAlignedBoundingBox GetBoundingBox() const;
+    AxisAlignedBoundingBox GetBoundingBox() const override;
 
 private:
     std::shared_ptr<Hittable> _left;

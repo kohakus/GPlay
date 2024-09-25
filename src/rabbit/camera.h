@@ -19,6 +19,7 @@ namespace rabbit {
 class Camera {
 public:
     Camera();
+
     Camera(Point3 lookfrom_point, Point3 lookat_point, Vec3 vup_direction, double vfov_angle,
            double image_aspect_ratio, int out_image_width, int num_samples_per_pixel,
            int max_depth, double variation_angle, double focus_distance, Color background_color);
@@ -26,12 +27,30 @@ public:
     // Initialize ...
     void Initialize();
 
+    // GetRay construct a camera ray originating from the defocus disk and directed at a randomly
+    // sampled point around the pixel location i, j
+    Ray GetRay(int i, int j) const;
+
     // SetBackgroundColor ...
     void SetBackgroundColor(Color color);
 
-    // GetRay construct a camera ray originating from the defocus disk and directed at a randomly
-    // sampled point around the pixel location i, j
-    Ray GetRay(int i, int j);
+    // ImageWidth ...
+    int ImageWidth() const;
+
+    // ImageHeight ...
+    int ImageHeight() const;
+
+    // SamplesPerPixel ...
+    int SamplesPerPixel() const;
+
+    // PixelSamplesScaleFactor ...
+    double PixelSamplesScaleFactor() const;
+
+    // MaxBounce ...
+    int MaxBounce() const;
+
+    // BackgroundColor ...
+    const Color& BackgroundColor() const;
 
 public:
     // Point camera is looking from

@@ -48,7 +48,7 @@ bool Dielectric::Scatter(const Ray& r_in, const HitRecord& record, Color& attenu
     return true;
 }
 
-DiffuseLight::DiffuseLight(const Color& emit) : _texture(std::make_shared<Texture>(emit)) {}
+DiffuseLight::DiffuseLight(const Color& emit) : _texture(std::make_shared<SolidColor>(emit)) {}
 
 DiffuseLight::DiffuseLight(std::shared_ptr<Texture> texture) : _texture(texture) {}
 
@@ -56,7 +56,7 @@ Color DiffuseLight::Emitted(double u, double v, const Point3& p) const {
     return _texture->Value(u, v, p);
 }
 
-Isotropic::Isotropic(const Color& albedo) : _texture(std::make_shared<Texture>(albedo)) {}
+Isotropic::Isotropic(const Color& albedo) : _texture(std::make_shared<SolidColor>(albedo)) {}
 
 Isotropic::Isotropic(std::shared_ptr<Texture> texture) : _texture(texture) {}
 

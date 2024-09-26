@@ -30,9 +30,13 @@ BVHNode::BVHNode(std::vector<std::shared_ptr<Hittable>>& objects, size_t start, 
         _left = objects[start];
         _right = objects[start+1];
     } else {
-        auto comparator = [axis](const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b) {
-            return BoxCompare(a, b, axis);
-        };
+        // auto comparator = [axis](const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b) {
+        //     return BoxCompare(a, b, axis);
+        // };
+
+        auto comparator = (axis == 0) ? BoxCompareX
+                        : (axis == 1) ? BoxCompareY
+                                      : BoxCompareZ;
         std::sort(objects.begin()+start, objects.begin()+end, comparator);
         size_t mid = start + list_span/2;
 
@@ -48,9 +52,10 @@ bool BVHNode::Hit(const Ray& r, Interval ray_time_interval, HitRecord& record) c
     if (!_bbox.Hit(r, ray_time_interval)) {
         return false;
     }
-    bool hit_left = Hit(r, ray_time_interval, record);
-    bool hit_right = Hit(r, Interval(ray_time_interval.GetMin(), hit_left ? record.GetHitTime()
-                                                                          : ray_time_interval.GetMax()), record);
+    bool hit_left = _left->Hit(r, ray_time_interval, record);
+    bool hit_right = _right->Hit(r, Interval(ray_time_interval.GetMin(),
+                                             hit_left ? record.GetHitTime() : ray_time_interval.GetMax()),
+                                 record);
     return hit_left || hit_right;
 }
 
@@ -62,6 +67,18 @@ bool BoxCompare(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittabl
     auto&& a_axis_interval = a->GetBoundingBox().GetAxisInterval(axis);
     auto&& b_axis_interval = b->GetBoundingBox().GetAxisInterval(axis);
     return a_axis_interval.GetMin() < b_axis_interval.GetMin();
+}
+
+bool BoxCompareX(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b) {
+    return BoxCompare(a, b, 0);
+}
+
+bool BoxCompareY(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b) {
+    return BoxCompare(a, b, 1);
+}
+
+bool BoxCompareZ(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b) {
+    return BoxCompare(a, b, 2);
 }
 
 } // namespace rabbit

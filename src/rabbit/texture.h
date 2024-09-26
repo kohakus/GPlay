@@ -70,13 +70,13 @@ private:
 // NoiseTexture ...
 class NoiseTexture : public Texture {
 public:
-    NoiseTexture(double scale_factor);
+    NoiseTexture(double scale_factor, std::shared_ptr<Noise> noise);
 
     Color Value(double u, double v, const Point3& p) const override;
 
 private:
-    std::shared_ptr<Noise> _noise;
     double _scale_factor;
+    std::shared_ptr<Noise> _noise;
 };
 
 } // namespace rabbit

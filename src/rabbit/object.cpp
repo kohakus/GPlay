@@ -85,7 +85,7 @@ void Sphere::GetSphereUV(const Point3& p, double& u, double& v) {
 }
 
 Quadrilateral::Quadrilateral(const Point3& q, const Vec3& u, const Vec3& v, std::shared_ptr<Material> material)
-    : _q(q), _u(u), _v(v) {
+    : _q(q), _u(u), _v(v), _material(material) {
     // Plane normal
     Vec3 n = Vec3Cross(_u, _v);
     _normal = UnitVec(n);
@@ -220,7 +220,8 @@ AxisAlignedBoundingBox ObjectTranslated::GetBoundingBox() const {
     return _bbox;
 }
 
-ObjectYRotated::ObjectYRotated(std::shared_ptr<Hittable> object, double angle) {
+ObjectYRotated::ObjectYRotated(std::shared_ptr<Hittable> object, double angle)
+    : _object(object) {
     auto radians = DegreesToRadians(angle);
     _sin_theta = std::sin(radians);
     _cos_theta = std::cos(radians);

@@ -32,9 +32,9 @@ double PerlinNoise::NoiseValue(const Point3& p) const {
         for (int dj = 0; dj < 2; dj++) {
             for (int dk = 0; dk < 2; dk++) {
                 c[di][dj][dk] = _randvec[
-                    _perm_x[(i+di) % point_count] ^
-                    _perm_y[(j+dj) % point_count] ^
-                    _perm_z[(k+dk) % point_count]
+                    _perm_x[(i+di) & (point_count-1)] ^
+                    _perm_y[(j+dj) & (point_count-1)] ^
+                    _perm_z[(k+dk) & (point_count-1)]
                 ];
             }
         }

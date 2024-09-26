@@ -55,7 +55,9 @@ Color ImageTexture::Value(double u, double v, const Point3& p) const {
     return Color(pixel[0], pixel[1], pixel[2]) * (1.0/255.0);
 }
 
-NoiseTexture::NoiseTexture(double scale_factor) : _scale_factor(scale_factor) {}
+NoiseTexture::NoiseTexture(double scale_factor, std::shared_ptr<Noise> noise)
+    : _scale_factor(scale_factor),
+      _noise(noise) {}
 
 Color NoiseTexture::Value(double u, double v, const Point3& p) const {
     // Usually turbulence is used indirectly.

@@ -34,11 +34,14 @@ private:
 // BoxCompare compare AABBs by axis
 bool BoxCompare(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b, int axis);
 
-// bool BoxCompareX(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b);
+// BoxCompareX ...
+bool BoxCompareX(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b);
 
-// bool BoxCompareY(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b);
+// BoxCompareY ...
+bool BoxCompareY(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b);
 
-// bool BoxCompareZ(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b);
+// BoxCompareZ ...
+bool BoxCompareZ(const std::shared_ptr<Hittable> a, const std::shared_ptr<Hittable> b);
 
 } // namespace rabbit
 

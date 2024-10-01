@@ -59,7 +59,7 @@ inline std::istream& operator>>(std::istream& is, Vec2& t) {
     return is;
 }
 
-inline std::ostream& operator<<(std::ostream& os, Vec2& t) {
+inline std::ostream& operator<<(std::ostream& os, const Vec2& t) {
     os << t.e[0] << " " << t.e[1];
     return os;
 }

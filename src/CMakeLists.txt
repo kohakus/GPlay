@@ -24,6 +24,7 @@ add_executable(gplay_owls owls/main.cpp
     gmath/vec3.cpp
     gmath/vec2.cpp
     gmath/smatrix4.cpp
+    gassets/meshdata.cpp
     owls/mathtools.cpp
     owls/camera.cpp
     owls/triangle.cpp
@@ -31,4 +32,7 @@ add_executable(gplay_owls owls/main.cpp
     owls/transforms.cpp
     owls/shading.cpp
     owls/draw.cpp
+)
+target_link_libraries(gplay_owls PRIVATE
+    tinyobjloader
 )

@@ -5,7 +5,7 @@
 #include <glad/glad.h>
 #include <string>
 
-#include "event.h"
+#include "common/event.h"
 
 namespace gplay {
 

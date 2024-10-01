@@ -1,6 +1,5 @@
 #ifndef GPLAY_RABBIT_HITTABLE_H
 #define GPLAY_RABBIT_HITTABLE_H
-
 /*
 Class Hittable - Abstract class for anything a ray might hit
 reference: https://github.com/RayTracing/raytracing.github.io/blob/release/src/TheNextWeek

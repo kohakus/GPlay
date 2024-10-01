@@ -1,6 +1,6 @@
-#include "glwindow.h"
-#include "log.h"
-#include "utils.h"
+#include "common/glwindow.h"
+#include "common/log.h"
+#include "common/utils.h"
 
 namespace gplay {
 
@@ -93,17 +93,17 @@ void GLWindow::WindowInit() {
             } else {
                 switch (action) {
                     case GLFW_PRESS: {
-                        KeyEvent event(EventType::KEY_PRESS, key);
+                        KeyEvent event(EventType::kKeyPress, key);
                         (*fn)(event);
                         break;
                     }
                     case GLFW_RELEASE: {
-                        KeyEvent event(EventType::KEY_RELEASE, key);
+                        KeyEvent event(EventType::kKeyRelease, key);
                         (*fn)(event);
                         break;
                     }
                     case GLFW_REPEAT: {
-                        KeyEvent event(EventType::KEY_REPEAT, key);
+                        KeyEvent event(EventType::kKeyRepeat, key);
                         (*fn)(event);
                         break;
                     }
@@ -132,12 +132,12 @@ void GLWindow::WindowInit() {
             } else {
                 switch (action) {
                     case GLFW_PRESS: {
-                        MouseButtonEvent event(EventType::MOUSE_PRESS, button);
+                        MouseButtonEvent event(EventType::kMousePress, button);
                         (*fn)(event);
                         break;
                     }
                     case GLFW_RELEASE: {
-                        MouseButtonEvent event(EventType::MOUSE_RELEASE, button);
+                        MouseButtonEvent event(EventType::kMouseRelease, button);
                         (*fn)(event);
                         break;
                     }

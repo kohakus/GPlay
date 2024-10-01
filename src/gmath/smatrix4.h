@@ -21,6 +21,8 @@ public:
              double i, double j, double k, double l,
              double m, double n, double o, double p);
 
+    SMatrix4(const Vec3& a, const Vec3& b, const Vec3& c, const Vec3& d);
+
     SMatrix4(const SMatrix4& m);
 
     inline const double* operator[](int i) const { return mat[i]; }

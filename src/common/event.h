@@ -4,20 +4,20 @@
 namespace gplay {
 
 enum class EventType {
-    NONE = 0,
-    KEY_PRESS,
-    KEY_RELEASE,
-    KEY_REPEAT,
-    MOUSE_PRESS,
-    MOUSE_RELEASE,
-    MOUSE_POSITION,
-    MOUSE_SCROLL,
-    WINDOW_RESIZE
+    kNone = 0,
+    kKeyPress,
+    kKeyRelease,
+    kKeyRepeat,
+    kMousePress,
+    kMouseRelease,
+    kMousePosition,
+    kMouseScroll,
+    kWindowResize
 };
 
 class Event {
 private:
-    EventType _event_type = EventType::NONE;
+    EventType _event_type = EventType::kNone;
     bool _handled = false;
 
 public:
@@ -77,7 +77,7 @@ private:
 
 public:
     MousePositionEvent(double xpos, double ypos)
-        : Event(EventType::MOUSE_POSITION), _xpos(xpos), _ypos(ypos) {}
+        : Event(EventType::kMousePosition), _xpos(xpos), _ypos(ypos) {}
 
     inline double GetXPos() { return _xpos; }
     inline double GetYPos() { return _ypos; }
@@ -89,7 +89,7 @@ private:
 
 public:
     MouseScrollEvent(double xoffset, double yoffset)
-        : Event(EventType::MOUSE_SCROLL),
+        : Event(EventType::kMouseScroll),
           _xoffset(xoffset),
           _yoffset(yoffset) {}
 
@@ -103,7 +103,7 @@ private:
 
    public:
     WindowResizeEvent(int width, int height)
-        : Event(EventType::WINDOW_RESIZE), _width(width), _height(height) {}
+        : Event(EventType::kWindowResize), _width(width), _height(height) {}
 
     inline int GetWidth() { return _width; }
     inline int GetHeight() { return _height; }

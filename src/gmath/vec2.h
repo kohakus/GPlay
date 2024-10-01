@@ -51,6 +51,9 @@ public:
     double e[2];
 };
 
+// Point2 alias of Vec2
+using Point2 = Vec2;
+
 inline std::istream& operator>>(std::istream& is, Vec2& t) {
     is >> t.e[0] >> t.e[1];
     return is;
@@ -82,7 +85,7 @@ inline Vec2 operator*(double t, const Vec2& v) {
 }
 
 inline Vec2 operator*(const Vec2& v, double t) {
-  return t * v;
+    return t * v;
 }
 
 inline Vec2 operator/(const Vec2& v, double t) {
@@ -96,11 +99,11 @@ inline double Vec2Dot(const Vec2& v1, const Vec2& v2) {
 // Note that this is not actual cross product.
 // 2D cross returns the magnitude of the vector that would result from a regular 3D cross product of the input vectors.
 inline double Vec2Cross(const Vec2& v1, const Vec2& v2) {
-  return v1.X()*v2.Y() - v1.X()*v2.Y();
+    return v1.X()*v2.Y() - v1.Y()*v2.X();
 }
 
 inline Vec2 UnitVec(const Vec2& v) {
-  return v / v.Length();
+    return v / v.Length();
 }
 
 } // namespace gmath

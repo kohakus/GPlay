@@ -17,6 +17,28 @@ SMatrix4::SMatrix4(double a, double b, double c, double d,
     mat[3][0] = m; mat[3][1] = n; mat[3][2] = o; mat[3][3] = p;
 }
 
+SMatrix4::SMatrix4(const Vec3& a, const Vec3& b, const Vec3& c, const Vec3& d) {
+    mat[0][0] = a.X();
+    mat[0][1] = a.Y();
+    mat[0][2] = a.Z();
+    mat[0][3] = 0;
+
+    mat[1][0] = b.X();
+    mat[1][1] = b.Y();
+    mat[1][2] = b.Z();
+    mat[1][3] = 0;
+
+    mat[2][0] = c.X();
+    mat[2][1] = c.Y();
+    mat[2][2] = c.Z();
+    mat[2][3] = 0;
+
+    mat[3][0] = d.X();
+    mat[3][1] = d.Y();
+    mat[3][2] = d.Z();
+    mat[3][3] = 1;
+}
+
 SMatrix4::SMatrix4(const SMatrix4& m) {
     mat[0][0] = m.mat[0][0]; mat[0][1] = m.mat[0][1]; mat[0][2] = m.mat[0][2]; mat[0][3] = m.mat[0][3];
     mat[1][0] = m.mat[1][0]; mat[1][1] = m.mat[1][1]; mat[1][2] = m.mat[1][2]; mat[1][3] = m.mat[1][3];

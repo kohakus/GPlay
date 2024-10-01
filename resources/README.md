@@ -1,1 +1,3 @@
-
+- earthmap.jpg [link](https://github.com/RayTracing/raytracing.github.io/blob/release/images/earthmap.jpg)
+- cow.obj [link](https://github.com/scratchapixel/scratchapixel-code/blob/main/rasterization-practical-implementation/cow.obj)
+- cube.obj [link](./data/cube.obj.txt)

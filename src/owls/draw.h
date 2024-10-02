@@ -16,7 +16,7 @@ public:
 
     // RenderCheckerPattern render a triangle defined by three points, using checker pattern
     void RenderCheckerPattern(double checker_scale, const gmath::Point3& p0, const gmath::Point3& p1, const gmath::Point3& p2,
-                              const VertexAttribute& attr0, const VertexAttribute& attr1, const VertexAttribute& attr2);
+                              const VertexUVAttribute& attr0_uv, const VertexUVAttribute& attr1_uv, const VertexUVAttribute& attr2_uv);
 
     // WriteImage write buffer data to an output image file
     void WriteImage(const std::string& outfile);

@@ -15,7 +15,7 @@ TrianglePainter::TrianglePainter(const Camera& camera) : _camera(camera) {
 }
 
 void TrianglePainter::RenderCheckerPattern(double checker_scale, const gmath::Point3& p0, const gmath::Point3& p1, const gmath::Point3& p2,
-                                           const VertexAttribute& attr0, const VertexAttribute& attr1, const VertexAttribute& attr2) {
+                                           const VertexUVAttribute& attr0_uv, const VertexUVAttribute& attr1_uv, const VertexUVAttribute& attr2_uv) {
     gmath::Point3 p0_cam = CvtCoordinateWorldToCamera(p0, _camera);
     gmath::Point3 p1_cam = CvtCoordinateWorldToCamera(p1, _camera);
     gmath::Point3 p2_cam = CvtCoordinateWorldToCamera(p2, _camera);
@@ -23,10 +23,6 @@ void TrianglePainter::RenderCheckerPattern(double checker_scale, const gmath::Po
     gmath::Point3 p0_raster = CvtCoordinateCameraToRaster(p0_cam, _camera);
     gmath::Point3 p1_raster = CvtCoordinateCameraToRaster(p1_cam, _camera);
     gmath::Point3 p2_raster = CvtCoordinateCameraToRaster(p2_cam, _camera);
-
-    auto&& attr0_uv = dynamic_cast<const VertexUVAttribute&>(attr0);
-    auto&& attr1_uv = dynamic_cast<const VertexUVAttribute&>(attr1);
-    auto&& attr2_uv = dynamic_cast<const VertexUVAttribute&>(attr2);
 
     int image_w = GetPainterImageWidth();
     int image_h = GetPainterImageHeight();

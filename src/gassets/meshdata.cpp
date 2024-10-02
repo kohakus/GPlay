@@ -59,13 +59,9 @@ bool MeshData::LoadObj(const std::string& directory, const std::string& filename
         return false;
     }
 
-    for (int i = 0; i < shapes.size(); i ++) {
-        const tinyobj::shape_t& shape = shapes[i];
-        const tinyobj::mesh_t& mesh = shape.mesh;
-
-        for (int fv = 0; fv < mesh.indices.size(); fv++) {
-            tinyobj::index_t idx = mesh.indices[fv];
-            MeshVertex vert;
+    for (const tinyobj::shape_t& shape : shapes) {
+        for (const tinyobj::index_t& idx : shape.mesh.indices) {
+            MeshVertex vert{};
 
             // Check if `vertex_index` is zero or positive. negative = no vertex data
             if (idx.vertex_index >= 0) {
@@ -97,6 +93,13 @@ bool MeshData::LoadObj(const std::string& directory, const std::string& filename
     }
 
     return true;
+}
+
+const MeshVertex* MeshData::GetVertexData(size_t idx) const {
+    if (idx >= GetVertexNum()) {
+        std::cerr << "EXC BAD ACCESS idx=" << idx << " out of range 0-" << GetVertexNum()-1 << std::endl;
+    }
+    return &vertices[idx];
 }
 
 } // namespace gassets

@@ -55,9 +55,7 @@ public:
     bool LoadObj(const std::string& directory, const std::string& filename);
 
     // GetVertexData ...
-    inline const MeshVertex* GetVertexData(size_t idx) const {
-        return &vertices[idx];
-    }
+    const MeshVertex* GetVertexData(size_t idx) const;
 
     // GetVertexNum return the number of vertices of mesh data
     inline size_t GetVertexNum() const {

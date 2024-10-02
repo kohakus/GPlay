@@ -27,14 +27,14 @@ void RenderPreloadCowDemo() {
     );
     auto painter = TrianglePainter(camera);
 
-    for (int i = 0; i < mesh_data.GetVertexNum(); i++) {
-        const gassets::MeshVertex* vertex0 = mesh_data.GetVertexData(i * 3);
-        const gassets::MeshVertex* vertex1 = mesh_data.GetVertexData(i * 3 + 1);
-        const gassets::MeshVertex* vertex2 = mesh_data.GetVertexData(i * 3 + 2);
+    for (int i = 0; i < mesh_data.GetVertexNum(); i+=3) {
+        const gassets::MeshVertex* vertex0 = mesh_data.GetVertexData(i);
+        const gassets::MeshVertex* vertex1 = mesh_data.GetVertexData(i+1);
+        const gassets::MeshVertex* vertex2 = mesh_data.GetVertexData(i+2);
 
-        auto uv0 = VertexUVAttribute(vertex0->GetTextureCoordinate());
-        auto uv1 = VertexUVAttribute(vertex1->GetTextureCoordinate());
-        auto uv2 = VertexUVAttribute(vertex2->GetTextureCoordinate());
+        VertexUVAttribute uv0(vertex0->GetTextureCoordinate());
+        VertexUVAttribute uv1(vertex1->GetTextureCoordinate());
+        VertexUVAttribute uv2(vertex2->GetTextureCoordinate());
 
         painter.RenderCheckerPattern(10,
                                      vertex0->GetCoordinate(), vertex1->GetCoordinate(), vertex2->GetCoordinate(),
@@ -61,14 +61,14 @@ void RenderPreloadCubeDemo() {
     );
     auto painter = TrianglePainter(camera);
 
-    for (int i = 0; i < mesh_data.GetVertexNum(); i++) {
-        const gassets::MeshVertex* vertex0 = mesh_data.GetVertexData(i * 3);
-        const gassets::MeshVertex* vertex1 = mesh_data.GetVertexData(i * 3 + 1);
-        const gassets::MeshVertex* vertex2 = mesh_data.GetVertexData(i * 3 + 2);
+    for (int i = 0; i < mesh_data.GetVertexNum(); i+=3) {
+        const gassets::MeshVertex* vertex0 = mesh_data.GetVertexData(i);
+        const gassets::MeshVertex* vertex1 = mesh_data.GetVertexData(i+1);
+        const gassets::MeshVertex* vertex2 = mesh_data.GetVertexData(i+2);
 
-        auto uv0 = VertexUVAttribute(vertex0->GetTextureCoordinate());
-        auto uv1 = VertexUVAttribute(vertex1->GetTextureCoordinate());
-        auto uv2 = VertexUVAttribute(vertex2->GetTextureCoordinate());
+        VertexUVAttribute uv0(vertex0->GetTextureCoordinate());
+        VertexUVAttribute uv1(vertex1->GetTextureCoordinate());
+        VertexUVAttribute uv2(vertex2->GetTextureCoordinate());
 
         painter.RenderCheckerPattern(10,
                                      vertex0->GetCoordinate(), vertex1->GetCoordinate(), vertex2->GetCoordinate(),
